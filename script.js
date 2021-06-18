@@ -58,7 +58,7 @@ map.addControl(new locationiqLayerControl({
     key: locationiq.key,
     layerStyles: layerStyles
 }), 'top-left');
-
+var marker;
 const success = (position) => {
     console.log("location channged");
     const latitude = position.coords.latitude;
@@ -84,7 +84,9 @@ const success = (position) => {
         document.getElementById('form').style.display = "none";
     }
 
-    var marker = new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
+    map.removeLayer(marker);
+    marker = new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
+
     mapLink.textContent = `${area} Latitude: ${latitude} °, Longitude: ${longitude} °`;
 }
 
